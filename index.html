@@ -106,50 +106,51 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hex-display">
+                <div class="live-terminal">
                     <div class="terminal-header">
                         <div class="terminal-controls">
                             <span class="control close"></span>
                             <span class="control minimize"></span>
                             <span class="control maximize"></span>
                         </div>
-                        <div class="terminal-title">memory_analysis.bin</div>
+                        <div class="terminal-title">security_monitor.sh — bash — 80×24</div>
                     </div>
-                    <div class="hex-content">
-                        <div class="hex-header">
-                            <span class="hex-title">Memory Dump Analysis</span>
-                            <span class="hex-status">Status: <span class="status-active">ACTIVE</span></span>
+                    <div class="terminal-content">
+                        <div class="terminal-line">
+                            <span class="prompt">minhaz@security:~$</span>
+                            <span class="command">nmap -sS 192.168.1.0/24</span>
                         </div>
-                        <div class="binary-rain">
-                            <div class="binary-line">1101001 0110110 1001011 0101101</div>
-                            <div class="binary-line">0111010 1101001 0110001 1010110</div>
-                            <div class="binary-line">1010011 0101110 1100101 0111011</div>
-                            <div class="binary-line">0110110 1001010 0101101 1101001</div>
+                        <div class="output">Starting Nmap scan...</div>
+                        <div class="output success">Host is up (0.001s latency)</div>
+                        <div class="output">22/tcp   open  ssh</div>
+                        <div class="output">80/tcp   open  http</div>
+                        <div class="output">443/tcp  open  https</div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">minhaz@security:~$</span>
+                            <span class="command">netstat -tulpn | grep LISTEN</span>
                         </div>
-                        <div class="hex-dump">
-                            <div class="hex-line">
-                                <span class="address">0x7FF8</span>
-                                <span class="hex-bytes">4D 49 4E 48 41 5A</span>
-                                <span class="ascii">MINHAZ</span>
-                            </div>
-                            <div class="hex-line">
-                                <span class="address">0x7FFE</span>
-                                <span class="hex-bytes">53 45 43 55 52 49</span>
-                                <span class="ascii">SECURI</span>
-                            </div>
-                            <div class="hex-line">
-                                <span class="address">0x8004</span>
-                                <span class="hex-bytes">54 59 20 45 58 50</span>
-                                <span class="ascii">TY EXP</span>
-                            </div>
-                            <div class="hex-line">
-                                <span class="address">0x800A</span>
-                                <span class="hex-bytes">45 52 54 00 00 00</span>
-                                <span class="ascii">ERT...</span>
-                            </div>
+                        <div class="output">tcp 0.0.0.0:22  LISTEN  1337/sshd</div>
+                        <div class="output">tcp 0.0.0.0:80  LISTEN  1842/nginx</div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">minhaz@security:~$</span>
+                            <span class="command">ps aux | grep suspicious</span>
                         </div>
-                        <div class="scanning-bar">
-                            <div class="scan-progress"></div>
+                        <div class="output warning">No suspicious processes found</div>
+                        
+                        <div class="terminal-line">
+                            <span class="prompt">minhaz@security:~$</span>
+                            <span class="command">tail -f /var/log/auth.log</span>
+                        </div>
+                        <div class="output live-log" id="authLog">Monitoring authentication logs...</div>
+                        
+                        <div class="terminal-line active">
+                            <span class="prompt">minhaz@security:~$</span>
+                            <span class="command-input">
+                                <span class="typing-text"></span>
+                                <span class="cursor">█</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -615,40 +616,70 @@
                 }
             });
 
-            // Hex display animation
-            const hexBytes = document.querySelectorAll('.hex-bytes');
-            const binaryLines = document.querySelectorAll('.binary-line');
+            // Live terminal simulation
+            const typingText = document.querySelector('.typing-text');
+            const authLog = document.getElementById('authLog');
             
-            // Animate hex values occasionally
-            setInterval(() => {
-                const randomHexElement = hexBytes[Math.floor(Math.random() * hexBytes.length)];
-                if (randomHexElement) {
-                    const originalText = randomHexElement.textContent;
-                    const newHex = Math.floor(Math.random() * 255).toString(16).toUpperCase().padStart(2, '0');
-                    const parts = originalText.split(' ');
-                    const randomIndex = Math.floor(Math.random() * parts.length);
-                    parts[randomIndex] = newHex;
-                    randomHexElement.textContent = parts.join(' ');
-                    
-                    // Restore original after a moment
-                    setTimeout(() => {
-                        randomHexElement.textContent = originalText;
-                    }, 1500);
-                }
-            }, 3000);
+            const terminalCommands = [
+                'sudo netstat -plan',
+                'wireshark -i eth0',
+                'ss -tulpn',
+                'lsof -i',
+                'iptables -L',
+                'tcpdump -i any',
+                'nmap -A localhost',
+                'fail2ban-client status'
+            ];
 
-            // Generate random binary for animation
-            function generateRandomBinary() {
-                return Math.floor(Math.random() * 128).toString(2).padStart(7, '0');
+            let commandIndex = 0;
+            let charIndex = 0;
+
+            // Typing animation for new commands
+            function typeCommand() {
+                if (typingText && terminalCommands[commandIndex]) {
+                    const currentCommand = terminalCommands[commandIndex];
+                    if (charIndex < currentCommand.length) {
+                        typingText.textContent = currentCommand.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typeCommand, 100 + Math.random() * 100);
+                    } else {
+                        setTimeout(() => {
+                            typingText.textContent = '';
+                            charIndex = 0;
+                            commandIndex = (commandIndex + 1) % terminalCommands.length;
+                            setTimeout(typeCommand, 2000);
+                        }, 3000);
+                    }
+                }
             }
 
-            // Update binary rain occasionally
-            setInterval(() => {
-                binaryLines.forEach(line => {
-                    const binaryString = `${generateRandomBinary()} ${generateRandomBinary()} ${generateRandomBinary()} ${generateRandomBinary()}`;
-                    line.textContent = binaryString;
-                });
-            }, 4000);
+            // Start typing animation
+            setTimeout(typeCommand, 2000);
+
+            // Live authentication log simulation
+            const logEntries = [
+                'Accepted publickey for minhaz from 192.168.1.100',
+                'Failed password for admin from 45.142.23.45',
+                'Successful sudo authentication for minhaz',
+                'SSH connection from 192.168.1.50 port 22',
+                'Session opened for user minhaz',
+                'Firewall blocked connection from 176.31.45.67',
+                'Login successful: minhaz@security-workstation'
+            ];
+
+            function updateAuthLog() {
+                if (authLog) {
+                    const randomEntry = logEntries[Math.floor(Math.random() * logEntries.length)];
+                    const timestamp = new Date().toLocaleTimeString();
+                    authLog.innerHTML = `[${timestamp}] ${randomEntry}`;
+                }
+            }
+
+            // Update auth log every 5 seconds
+            setInterval(updateAuthLog, 5000);
+            
+            // Initial auth log update
+            setTimeout(updateAuthLog, 1000);
         });
     </script>
 </body>
