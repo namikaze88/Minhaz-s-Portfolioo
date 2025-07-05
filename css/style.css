@@ -6,15 +6,16 @@
     --secondary-bg: #1a1a1a;
     --card-bg: #1e1e1e;
     --terminal-bg: #0d1117;
-    --accent-green: #00ff88;
+    --accent-blue: #0080ff;
     --accent-cyan: #00d4ff;
+    --accent-purple: #8b5cf6;
     --accent-red: #ff4757;
     --text-primary: #ffffff;
     --text-secondary: #8b949e;
     --text-muted: #6e7681;
     --border-color: #30363d;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --gradient-primary: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+    --gradient-primary: linear-gradient(135deg, #0080ff 0%, #00d4ff 100%);
     --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 }
 
@@ -30,7 +31,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', 'Monaco', 'Menlo', monospace;
     background-color: var(--primary-bg);
     color: var(--text-primary);
     line-height: 1.6;
@@ -66,8 +67,8 @@ body {
 }
 
 .nav-logo .terminal-prompt {
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--accent-green);
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    color: var(--accent-blue);
     font-size: 1.2rem;
     font-weight: 600;
 }
@@ -88,7 +89,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 .nav-link::after {
@@ -190,18 +191,18 @@ body {
 }
 
 .control.maximize {
-    background: var(--accent-green);
+    background: var(--accent-blue);
 }
 
 .terminal-title {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
     font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
 .terminal-body {
     padding: 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
     font-size: 0.9rem;
     line-height: 1.8;
 }
@@ -211,7 +212,7 @@ body {
 }
 
 .prompt {
-    color: var(--accent-green);
+    color: var(--accent-blue);
     margin-right: 0.5rem;
 }
 
@@ -222,7 +223,7 @@ body {
 .terminal-output {
     margin: 1rem 0;
     padding-left: 1rem;
-    border-left: 2px solid var(--accent-green);
+    border-left: 2px solid var(--accent-blue);
 }
 
 .terminal-output h1 {
@@ -245,45 +246,67 @@ body {
     font-size: 1rem;
 }
 
-.security-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--gradient-secondary);
-    border: 2px solid var(--accent-green);
-    border-radius: 50%;
-    width: 300px;
-    height: 300px;
+.code-block {
+    background: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto;
     box-shadow: var(--shadow);
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
-.security-badge::before {
+.code-block::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, var(--accent-green), transparent);
-    animation: rotate 4s linear infinite;
-    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    animation: pulse 2s ease-in-out infinite;
 }
 
-.security-badge i {
-    font-size: 4rem;
-    color: var(--accent-green);
-    margin-bottom: 1rem;
+.code-content {
+    padding: 1rem;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
 
-.security-badge span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
+.code-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    min-height: 1.2rem;
+}
+
+.line-number {
+    color: var(--text-muted);
+    margin-right: 1rem;
+    min-width: 20px;
+    text-align: right;
+    user-select: none;
+}
+
+.code-text {
+    color: var(--text-secondary);
+}
+
+.code-text .highlight {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 @keyframes rotate {
@@ -311,7 +334,7 @@ section {
 }
 
 .section-title i {
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 /* Experience Section */
@@ -332,7 +355,7 @@ section {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: var(--accent-green);
+    background: var(--accent-blue);
     transform: translateX(-50%);
 }
 
@@ -350,7 +373,7 @@ section {
 .timeline-marker {
     width: 20px;
     height: 20px;
-    background: var(--accent-green);
+    background: var(--accent-blue);
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -370,7 +393,7 @@ section {
 }
 
 .timeline-content h3 {
-    color: var(--accent-green);
+    color: var(--accent-blue);
     margin-bottom: 0.5rem;
     font-size: 1.4rem;
 }
@@ -401,7 +424,7 @@ section {
 
 .responsibilities li::before {
     content: '▶';
-    color: var(--accent-green);
+    color: var(--accent-blue);
     position: absolute;
     left: 0;
     top: 0.25rem;
@@ -429,7 +452,7 @@ section {
 }
 
 .skill-category h3 {
-    color: var(--accent-green);
+    color: var(--accent-blue);
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
     display: flex;
@@ -454,7 +477,7 @@ section {
 }
 
 .tag:hover {
-    background: var(--accent-green);
+    background: var(--accent-blue);
     color: var(--primary-bg);
     transform: translateY(-2px);
 }
@@ -516,7 +539,7 @@ section {
 
 .project-icon i {
     font-size: 1.5rem;
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 .project-card h3 {
@@ -563,7 +586,7 @@ section {
 }
 
 .achievement-category h3 {
-    color: var(--accent-green);
+    color: var(--accent-blue);
     margin-bottom: 2rem;
     font-size: 1.5rem;
     text-align: center;
@@ -614,7 +637,7 @@ section {
 
 .cert-item i {
     font-size: 2rem;
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 .cert-details h4 {
@@ -667,7 +690,7 @@ section {
 }
 
 .contact-item i {
-    color: var(--accent-green);
+    color: var(--accent-blue);
     font-size: 1.2rem;
     width: 20px;
 }
@@ -679,7 +702,7 @@ section {
 }
 
 .contact-item a:hover {
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 /* Footer */
@@ -733,13 +756,12 @@ footer i {
         text-align: center;
     }
 
-    .security-badge {
-        width: 200px;
-        height: 200px;
+    .code-block {
+        max-width: 300px;
     }
 
-    .security-badge i {
-        font-size: 3rem;
+    .code-content {
+        font-size: 0.8rem;
     }
 
     .terminal-output h1 {
@@ -863,7 +885,7 @@ footer i {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--accent-green);
+    background: var(--accent-blue);
     border-radius: 4px;
 }
 
@@ -873,12 +895,12 @@ footer i {
 
 /* Selection styling */
 ::selection {
-    background: var(--accent-green);
+    background: var(--accent-blue);
     color: var(--primary-bg);
 }
 
 ::-moz-selection {
-    background: var(--accent-green);
+    background: var(--accent-blue);
     color: var(--primary-bg);
 }
 
@@ -908,7 +930,7 @@ footer i {
 }
 
 .loading-text {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
     font-size: 0.9rem;
     margin-bottom: 1rem;
     display: flex;
@@ -981,12 +1003,12 @@ footer i {
 
 @keyframes typing {
     0% {
-        border-right: 2px solid var(--accent-green);
+        border-right: 2px solid var(--accent-blue);
     }
     50% {
         border-right: 2px solid transparent;
     }
     100% {
-        border-right: 2px solid var(--accent-green);
+        border-right: 2px solid var(--accent-blue);
     }
 }
