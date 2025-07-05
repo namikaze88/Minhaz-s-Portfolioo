@@ -106,51 +106,50 @@
                 </div>
             </div>
             <div class="hero-image">
-                <div class="code-block">
+                <div class="hex-display">
                     <div class="terminal-header">
                         <div class="terminal-controls">
                             <span class="control close"></span>
                             <span class="control minimize"></span>
                             <span class="control maximize"></span>
                         </div>
-                        <div class="terminal-title">cybersec.py</div>
+                        <div class="terminal-title">memory_analysis.bin</div>
                     </div>
-                    <div class="code-content">
-                        <div class="code-line">
-                            <span class="line-number">1</span>
-                            <span class="code-text">#!/usr/bin/env python3</span>
+                    <div class="hex-content">
+                        <div class="hex-header">
+                            <span class="hex-title">Memory Dump Analysis</span>
+                            <span class="hex-status">Status: <span class="status-active">ACTIVE</span></span>
                         </div>
-                        <div class="code-line">
-                            <span class="line-number">2</span>
-                            <span class="code-text">import security</span>
+                        <div class="binary-rain">
+                            <div class="binary-line">1101001 0110110 1001011 0101101</div>
+                            <div class="binary-line">0111010 1101001 0110001 1010110</div>
+                            <div class="binary-line">1010011 0101110 1100101 0111011</div>
+                            <div class="binary-line">0110110 1001010 0101101 1101001</div>
                         </div>
-                        <div class="code-line">
-                            <span class="line-number">3</span>
-                            <span class="code-text">from expertise import *</span>
+                        <div class="hex-dump">
+                            <div class="hex-line">
+                                <span class="address">0x7FF8</span>
+                                <span class="hex-bytes">4D 49 4E 48 41 5A</span>
+                                <span class="ascii">MINHAZ</span>
+                            </div>
+                            <div class="hex-line">
+                                <span class="address">0x7FFE</span>
+                                <span class="hex-bytes">53 45 43 55 52 49</span>
+                                <span class="ascii">SECURI</span>
+                            </div>
+                            <div class="hex-line">
+                                <span class="address">0x8004</span>
+                                <span class="hex-bytes">54 59 20 45 58 50</span>
+                                <span class="ascii">TY EXP</span>
+                            </div>
+                            <div class="hex-line">
+                                <span class="address">0x800A</span>
+                                <span class="hex-bytes">45 52 54 00 00 00</span>
+                                <span class="ascii">ERT...</span>
+                            </div>
                         </div>
-                        <div class="code-line">
-                            <span class="line-number">4</span>
-                            <span class="code-text"></span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">5</span>
-                            <span class="code-text">class <span class="highlight">SecurityExpert</span>:</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">6</span>
-                            <span class="code-text">    def __init__(self):</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">7</span>
-                            <span class="code-text">        self.role = "Product Security"</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">8</span>
-                            <span class="code-text">        self.experience = "2+ years"</span>
-                        </div>
-                        <div class="code-line">
-                            <span class="line-number">9</span>
-                            <span class="code-text">        self.status = "active"</span>
+                        <div class="scanning-bar">
+                            <div class="scan-progress"></div>
                         </div>
                     </div>
                 </div>
@@ -615,6 +614,41 @@
                     }, 1000);
                 }
             });
+
+            // Hex display animation
+            const hexBytes = document.querySelectorAll('.hex-bytes');
+            const binaryLines = document.querySelectorAll('.binary-line');
+            
+            // Animate hex values occasionally
+            setInterval(() => {
+                const randomHexElement = hexBytes[Math.floor(Math.random() * hexBytes.length)];
+                if (randomHexElement) {
+                    const originalText = randomHexElement.textContent;
+                    const newHex = Math.floor(Math.random() * 255).toString(16).toUpperCase().padStart(2, '0');
+                    const parts = originalText.split(' ');
+                    const randomIndex = Math.floor(Math.random() * parts.length);
+                    parts[randomIndex] = newHex;
+                    randomHexElement.textContent = parts.join(' ');
+                    
+                    // Restore original after a moment
+                    setTimeout(() => {
+                        randomHexElement.textContent = originalText;
+                    }, 1500);
+                }
+            }, 3000);
+
+            // Generate random binary for animation
+            function generateRandomBinary() {
+                return Math.floor(Math.random() * 128).toString(2).padStart(7, '0');
+            }
+
+            // Update binary rain occasionally
+            setInterval(() => {
+                binaryLines.forEach(line => {
+                    const binaryString = `${generateRandomBinary()} ${generateRandomBinary()} ${generateRandomBinary()} ${generateRandomBinary()}`;
+                    line.textContent = binaryString;
+                });
+            }, 4000);
         });
     </script>
 </body>
