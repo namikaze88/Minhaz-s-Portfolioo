@@ -428,18 +428,6 @@ section {
     width: 300px;
 }
 
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    top: 4rem;
-    left: 50%;
-    width: 2px;
-    height: 2rem;
-    background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
-    transform: translateX(-50%);
-    z-index: 1;
-}
-
 .timeline-marker {
     width: 24px;
     height: 24px;
@@ -450,7 +438,7 @@ section {
     top: 4rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 3;
+    z-index: 2;
     box-shadow: 0 0 0 6px rgba(77, 166, 255, 0.2);
     transition: all 0.3s ease;
 }
@@ -465,7 +453,7 @@ section {
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid var(--border-color);
-    margin-top: 6rem;
+    margin-top: 3rem;
     position: relative;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
@@ -474,15 +462,13 @@ section {
 .timeline-content::before {
     content: '';
     position: absolute;
-    top: -12px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-bottom: 12px solid var(--card-bg);
-    border-top: 0;
+    width: 2px;
+    height: 8px;
+    background: var(--accent-blue);
+    z-index: 1;
 }
 
 .timeline-item:hover .timeline-content {
@@ -1022,11 +1008,6 @@ footer i {
         margin: 0 1.5rem;
     }
 
-    .timeline-item::before {
-        top: 3rem;
-        height: 1.5rem;
-    }
-
     .timeline-marker {
         width: 20px;
         height: 20px;
@@ -1034,8 +1015,13 @@ footer i {
     }
 
     .timeline-content {
-        margin-top: 4.5rem;
+        margin-top: 2rem;
         padding: 1.5rem;
+    }
+
+    .timeline-content::before {
+        height: 6px;
+        top: -6px;
     }
 
     .timeline-content h3 {
@@ -1120,18 +1106,18 @@ footer i {
         gap: 0.5rem;
     }
 
-    .timeline-item::before {
-        top: 3.5rem;
-        height: 1.8rem;
-    }
-
     .timeline-marker {
         top: 3.5rem;
     }
 
     .timeline-content {
-        margin-top: 5.3rem;
+        margin-top: 2.5rem;
         padding: 1rem;
+    }
+
+    .timeline-content::before {
+        height: 7px;
+        top: -7px;
     }
 
     .timeline-content h3 {
