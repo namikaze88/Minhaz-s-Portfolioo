@@ -421,10 +421,10 @@ section {
 
 .timeline-item {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 2rem;
     display: inline-block;
     vertical-align: top;
-    width: 280px;
+    width: 320px;
 }
 
 .timeline-marker {
@@ -442,31 +442,32 @@ section {
 
 .timeline-content {
     background: var(--card-bg);
-    padding: 1.2rem;
+    padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid var(--border-color);
     margin-top: 2rem;
     position: relative;
+    min-height: 200px;
 }
 
 .timeline-content h3 {
     color: var(--accent-blue);
-    margin-bottom: 0.3rem;
-    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
     line-height: 1.3;
 }
 
 .timeline-content .company {
     color: var(--accent-cyan);
     font-weight: 600;
-    margin-bottom: 0.3rem;
-    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
 }
 
 .timeline-content .period {
     color: var(--text-muted);
-    font-size: 0.75rem;
-    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
 }
 
 .timeline-content .responsibilities {
@@ -477,9 +478,9 @@ section {
 
 .timeline-content .responsibilities li {
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.4;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
     padding-left: 1rem;
     position: relative;
 }
@@ -974,7 +975,8 @@ footer i {
     .timeline-item {
         display: inline-block;
         white-space: normal;
-        width: 250px;
+        width: 280px;
+        margin: 0 1rem;
     }
 
     .timeline-content {
