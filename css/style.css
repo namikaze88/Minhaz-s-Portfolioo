@@ -428,6 +428,18 @@ section {
     width: 300px;
 }
 
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    width: 2px;
+    height: 2rem;
+    background: linear-gradient(180deg, var(--accent-blue) 0%, var(--accent-cyan) 100%);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
 .timeline-marker {
     width: 24px;
     height: 24px;
@@ -435,10 +447,10 @@ section {
     border: 3px solid var(--secondary-bg);
     border-radius: 50%;
     position: absolute;
-    top: 2.5rem;
+    top: 4rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
     box-shadow: 0 0 0 6px rgba(77, 166, 255, 0.2);
     transition: all 0.3s ease;
 }
@@ -453,7 +465,7 @@ section {
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid var(--border-color);
-    margin-top: 3rem;
+    margin-top: 6rem;
     position: relative;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
@@ -1010,14 +1022,19 @@ footer i {
         margin: 0 1.5rem;
     }
 
+    .timeline-item::before {
+        top: 3rem;
+        height: 1.5rem;
+    }
+
     .timeline-marker {
         width: 20px;
         height: 20px;
-        top: 2rem;
+        top: 3rem;
     }
 
     .timeline-content {
-        margin-top: 2.5rem;
+        margin-top: 4.5rem;
         padding: 1.5rem;
     }
 
@@ -1103,8 +1120,17 @@ footer i {
         gap: 0.5rem;
     }
 
+    .timeline-item::before {
+        top: 3.5rem;
+        height: 1.8rem;
+    }
+
+    .timeline-marker {
+        top: 3.5rem;
+    }
+
     .timeline-content {
-        margin-top: 1.5rem;
+        margin-top: 5.3rem;
         padding: 1rem;
     }
 
