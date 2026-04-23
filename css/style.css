@@ -696,6 +696,32 @@ section {
     font-size: 1.3rem;
 }
 
+.project-card h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-card h3 a:hover {
+    color: var(--accent-cyan);
+}
+
+.project-card h3 a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-cyan);
+    transition: width 0.3s ease;
+}
+
+.project-card h3 a:hover::after {
+    width: 100%;
+}
+
 .project-card p {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
