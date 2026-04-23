@@ -446,7 +446,7 @@ section {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     width: 45%;
-    margin: 0 3rem;
+    margin: 0 2rem;
 }
 
 .timeline-content h3 {
